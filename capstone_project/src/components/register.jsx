@@ -1,5 +1,30 @@
 /* TODO - add your code to create a functional React component that renders a registration form */
 import { useEffect, useState } from "react";
+//import getSalesforceAccessToken from "../api/api";
+//import dotenv from 'dotenv';
+import axios from "axios";
+//dotenv.config();
+//import getSalesforceAccessToken  from "../../server";
+
+//hardcoded stuff
+async function getSalesforceAccessToken() {
+  const tokenUrl = `https://login.salesforce.com/services/oauth2/token`;
+  try {
+      const response = await axios.post(tokenUrl, null, {
+          params: {
+              grant_type: 'password', // This example uses Username-Password OAuth flow
+              client_id: '3MVG9XgkMlifdwVCsrdJm8wmHR6azcmfdYD3OmA8hfQQH.ShXd.jADs38DqmkHSwWIXijIqUWvExmdsDogzxH',
+              client_secret: '5DBBB8BCB1FB653E509AE280632526ED0947F74EC9509CD2C88D5793B3F61159',
+              username: 'integration@00daj00000efjzxeah.com',
+              password: 'Test123*!&*&' + 'WbDbIHQH7PKiDjR4u2dKh1Jc'
+          }
+      });
+      return response.data.access_token;
+  } catch (error) {
+      console.error('Error getting Salesforce access token:', error);
+      throw error;
+  }
+}
 
 const Register = ({setToken}) => {
   
@@ -15,12 +40,15 @@ const Register = ({setToken}) => {
     console.log(password);*/
 
     try {
+      const accessToken = await getSalesforceAccessToken();
+      
       const response = await fetch(
-        "https://kyantesting-dev-ed.my.salesforce.com/services/apexrest/Kyan_Testing/api/Account_Opening/kyanferreira26@gmail.com",
+        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Account_Opening/kyanferreira26@gmail.com",
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${accessToken}`
           },
           body: JSON.stringify({
             Kyan_Testing__First_Name__c: firstName,
