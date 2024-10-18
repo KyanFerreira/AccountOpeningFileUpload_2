@@ -7,18 +7,25 @@ import axios from "axios";
 //import getSalesforceAccessToken  from "../../server";
 
 //hardcoded stuff
+
 async function getSalesforceAccessToken() {
-  const tokenUrl = `https://login.salesforce.com/services/oauth2/token`;
+  const tokenUrl = `https://interaudibank-dev-ed.develop.my.salesforce.com/services/oauth2/token`;
   try {
+    console.log('process.env',process.env)
+    console.log('process.env.REACT_APP_SALESFORCE_PASSWORD',process.env.REACT_APP_SALESFORCE_PASSWORD)
+    console.log('process.env.REACT_APP_SALESFORCE_SECURITY_TOKEN',process.env.REACT_APP_SALESFORCE_SECURITY_TOKEN)
       const response = await axios.post(tokenUrl, null, {
           params: {
-              grant_type: 'password', // This example uses Username-Password OAuth flow
-              client_id: '3MVG9XgkMlifdwVCsrdJm8wmHR6azcmfdYD3OmA8hfQQH.ShXd.jADs38DqmkHSwWIXijIqUWvExmdsDogzxH',
-              client_secret: '5DBBB8BCB1FB653E509AE280632526ED0947F74EC9509CD2C88D5793B3F61159',
-              username: 'integration@00daj00000efjzxeah.com',
-              password: 'Test123*!&*&' + 'WbDbIHQH7PKiDjR4u2dKh1Jc'
+            grant_type: 'password', // This example uses Username-Password OAuth flow
+            client_id: process.env.REACT_APP_CLIENT_ID,
+            client_secret: process.env.REACT_APP_CLIENT_SECRET,
+            username: process.env.REACT_APP_SALESFORCE_USERNAME,
+            password: process.env.REACT_APP_SALESFORCE_PASSWORD + process.env.REACT_APP_SALESFORCE_SECURITY_TOKEN
           }
       });
+
+
+      console.log(response.data.access_token);
       return response.data.access_token;
   } catch (error) {
       console.error('Error getting Salesforce access token:', error);
@@ -34,16 +41,16 @@ const Register = ({setToken}) => {
     let lastName = document.getElementById("lastname").value;
     let emailValue = document.getElementById("email").value;
     let passwordValue = document.getElementById("password").value;
-    /*console.log(firstName);
+    console.log(firstName);
     console.log(lastName);
-    console.log(email);
-    console.log(password);*/
+    console.log(emailValue);
+    console.log(passwordValue);
 
     try {
       const accessToken = await getSalesforceAccessToken();
-      
+      console.log('accessToken', accessToken)
       const response = await fetch(
-        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Account_Opening/kyanferreira26@gmail.com",
+        "https://interaudibank-dev-ed.develop.salesforce.com/services/apexrest/api/Account_Opening/kyanferreira26@gmail.com",
         {
           method: "PATCH",
           headers: {
@@ -51,10 +58,10 @@ const Register = ({setToken}) => {
             'Authorization': `Bearer ${accessToken}`
           },
           body: JSON.stringify({
-            Kyan_Testing__First_Name__c: firstName,
-            Kyan_Testing__Last_Name__c: lastName,
-            Kyan_Testing__Email__c: emailValue,
-            Kyan_Testing__Password__c: passwordValue,
+            First_Name__c: firstName,
+            Last_Name__c: lastName,
+            Email__c: emailValue,
+            Password__c: passwordValue,
           }),
         }
       );
