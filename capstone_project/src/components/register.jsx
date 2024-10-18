@@ -50,7 +50,7 @@ const Register = ({setToken}) => {
       const accessToken = await getSalesforceAccessToken();
       console.log('accessToken', accessToken)
       const response = await fetch(
-        "https://interaudibank-dev-ed.develop.salesforce.com/services/apexrest/api/Account_Opening/kyanferreira26@gmail.com",
+        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Account_Opening/kyanferreira26@gmail.com",
         {
           method: "PATCH",
           headers: {
