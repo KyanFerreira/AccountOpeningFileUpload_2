@@ -13,14 +13,22 @@ const [count, setCount] = useState(0)
 
 return (
   <>
+  <div>
+    <h1>These are my links</h1>
+    <div>
+      <Link to="/BankAccountInfo"> Bank Account Info </Link>
+      <Link to="/"> Login </Link>
+      <Link to="/register"> Register </Link>
+    </div>
+  </div>
   <Routes>
-    <Route path="/BankAccountInfo" element={<Blue />}/>
-    <Route path="/Login" element={<Red />}/>
-    <Route path="/Register" element={<Home />}/>
+    <Route path="/BankAccountInfo" element={<BankAccountInfo />}/>
+    <Route path="/" element={<Login />}/>
+    <Route path="/Register" element={<Register />}/>
   </Routes>
-  <BankAccountInfo/>
+  {/* <BankAccountInfo/>
   <Login/>
-  <Register/>
+  <Register/> */}
   </>
 )
 }
