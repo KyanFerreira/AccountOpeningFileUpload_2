@@ -22,11 +22,22 @@ const DocumentUploadsDisplayed = ({documentList, setCurrentComments}) => {
     return (
       <>
         <h1> Here are all of your documents! </h1>
-        <ul>
+        <div classname="documents">
           {documentList.length && documentList.map((item) => (
-            <li key={item.Id} onClick={() => handleClick(item)}>{item.Name}</li>
+            <div key={item.Id} classname="doc-card">
+              <div clasName="file-image-container">
+                <img src="https://www.shutterstock.com/image-vector/copy-file-icon-trendy-modern-260nw-1675417978.jpg"></img>
+              </div>
+              <div className="doc-details">
+                <h2>item.Name</h2>
+                <p>The address is: {item.Account_Opening__r.Address__c}</p>
+                <button onClick={() => handleClick(item)}>See comments</button>
+              </div>
+            </div>
+            // <li key={item.Id} onClick={() => handleClick(item)}>{item.Name}</li>
           ))}
-        </ul>
+        </div>
+        
       </>
     );
   
