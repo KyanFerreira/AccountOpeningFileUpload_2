@@ -1,22 +1,30 @@
 import { useEffect, useState } from "react";
+import { useParams, useNavigate} from "react-router-dom";
+import { getClientComments } from "../api/api";
 
-const DocumentUploadsDisplayed = () => {
-  const [items, setItems] = useState([
-    {id: 1, name: 'File 1', status: 'Uploaded'}, 
-    {id: 2, name: 'File 2', status: 'Pending'}, 
-    {id: 3, name: 'File 3', status: 'Pending'}
-  ]);
+const DocumentUploadsDisplayed = ({documentList, setCurrentComments}) => {
+  const navigate = useNavigate();
+  //parsedDocumentList = JSON.parse(documentList)
+
+  console.log(documentList);
+  for(let key in documentList){
+    console.log(key);
+  }
+
+  //const [items, setItems] = useState([documentList]);
 
     const handleClick = (item) => {
-      console.log(`You have clicked on: ${item.name}`);
+      console.log(`You have clicked on: ${item.Name} and here is the address of the Account Opening: ${item.Account_Opening__r.Address__c}`);
+      getClientComments(setCurrentComments, item.Id);
+      navigate('/docdetails');
     }
 
     return (
       <>
         <h1> Here are all of your documents! </h1>
         <ul>
-          {items.length && items.map((item) => (
-            <li key={item.id} onClick={() => handleClick(item)}>{item.name}</li>
+          {documentList.length && documentList.map((item) => (
+            <li key={item.Id} onClick={() => handleClick(item)}>{item.Name}</li>
           ))}
         </ul>
       </>

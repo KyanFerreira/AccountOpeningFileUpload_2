@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 import CommentList from "./CommentList";
 
-const myDocumentDetails = () => {
+const myDocumentDetails = ({currentComments}) => {
 
   //this will be a list of comments
-  const [items, setItems] = useState({
-    name: "Placeholder Doc",
-    status: "Still Needed",
-  });
+  console.log(currentComments);
 
     return (
       <>
-        <h1> Here is your document Detail </h1>
-        <h2>items.name</h2>
-        <h2>items.status</h2>
-        {<CommentList/>}
+        <h1> Here Are Your Documents Details! </h1>
+        {<CommentList currentComments={currentComments}/>}
       </>
     );
   };

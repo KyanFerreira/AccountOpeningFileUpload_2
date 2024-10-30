@@ -11,7 +11,8 @@ import DocumentUploadsDisplayed from './components/DocumentUploadsDisplayed';
 // dotenv.config();
 
 function App() {
-const [count, setCount] = useState(0)
+const [documentList, setDocumentList] = useState([])
+const [currentComments, setCurrentComments] = useState([])
 
 return (
   <>
@@ -28,9 +29,9 @@ return (
   <Routes>
     <Route path="/" element={<Login />}/>
     <Route path="/BankAccountInfo" element={<BankAccountInfo />}/>
-    <Route path="/Register" element={<Register />}/>
-    <Route path="/docdetails" element={<MyDocumentDetails/>}/>
-    <Route path="/username" element={<DocumentUploadsDisplayed/>}/>
+    <Route path="/Register" element={<Register setDocumentList={setDocumentList}/>}/>
+    <Route path="/docdetails" element={<MyDocumentDetails currentComments={currentComments}/>}/>
+    <Route path="/username" element={<DocumentUploadsDisplayed documentList={documentList} setCurrentComments={setCurrentComments}/>}/>
   </Routes>
   </>
 )
