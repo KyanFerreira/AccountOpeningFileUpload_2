@@ -1,7 +1,7 @@
 import express from 'express';
 import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
+
+require('dotenv').config();
 // //require('dotenv').config(); // To load environment variables securely
 
 const app = express();
@@ -42,10 +42,10 @@ async function getSalesforceAccessToken() {
         const response = await axios.post(tokenUrl, null, {
             params: {
                 grant_type: 'password', // This example uses Username-Password OAuth flow
-                client_id: process.env.CLIENT_ID,
-                client_secret: process.env.CLIENT_SECRET,
-                username: process.env.SALESFORCE_USERNAME,
-                password: process.env.SALESFORCE_PASSWORD + process.env.SALESFORCE_SECURITY_TOKEN
+                client_id: process.env.REACT_APP_CLIENT_ID,
+                client_secret: process.env.REACT_APP_CLIENT_SECRET,
+                username: process.env.REACT_APP_SALESFORCE_USERNAME,
+                password: process.env.REACT_APP_SALESFORCE_PASSWORD + process.env.REACT_APP_SALESFORCE_SECURITY_TOKEN
             }
         });
         return response.data.access_token;
