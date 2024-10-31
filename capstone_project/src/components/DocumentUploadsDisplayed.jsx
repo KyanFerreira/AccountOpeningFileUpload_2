@@ -25,7 +25,7 @@ const DocumentUploadsDisplayed = ({documentList, setCurrentComments}) => {
         <div classname="documents">
           {documentList.length && documentList.map((item) => (
             <div key={item.Id} classname="doc-card">
-              <div clasName="file-image-container">
+              <div className="file-image-container">
                 <img src="https://www.shutterstock.com/image-vector/copy-file-icon-trendy-modern-260nw-1675417978.jpg"></img>
               </div>
               <div className="doc-details">
