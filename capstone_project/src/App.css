@@ -1,36 +1,8 @@
 #root {
-  max-width: 1280px;
+  max-width: 100vw;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
 
 .card {
@@ -39,4 +11,91 @@
 
 .read-the-docs {
   color: #888;
+}
+
+#navbar {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+#navbar link {
+  color: white;           /* Link text color */
+  text-align: center;     /* Center the text */
+  flex: 1;
+}
+
+/* Styling for the container that holds the player cards. */
+.documents {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Styling for individual player cards. */
+.doc-card {
+ width: 360px; /* The width of the card. */
+ height: fit-content; /* The height of the card. */
+ margin: 10px; /* The margin around the card. */
+  background-color: lightskyblue;
+  border-style: solid;
+  /* The radius of the card's corners. */
+  border-radius: 5px;
+  /* The shadow effect around the card. */
+  box-shadow: 1px 1px;
+ overflow: hidden; /* Any content that goes outside the card will be hidden. */
+ position: relative; /* The card's position is set to relative so it can be moved using the transform property. */
+ transition: transform 0.3s; /* Transition effect for the transform property. */
+}
+
+/* Styling for when a user hovers over a player card. */
+.player-card:hover {
+ margin-top: -1px;
+}
+
+/* Styling for the container that holds the player's image. */
+.file-image-container {
+/* The image is centered. */
+margin: auto;
+justify-content: center;
+align-items: center;
+/* The image is centered along the horizontal axis. */
+ /* The image is centered along the vertical axis. */
+ height: 300px; /* The height of the image container. */
+ max-height: 50%;
+ max-width: auto;
+ padding: 10px; /* The padding around the image. */
+}
+
+img {
+ width: auto; /* The width of the image. */
+ height: 250px; /* The height of the image. */
+ max-width: 100%;
+ max-height: 100%;
+ /* The image will cover the entire area of its container without distorting its aspect ratio. */
+ /* The image is displayed using CSS Grid. */
+/* The margin to the left of the image. */
+}
+
+/* Styling for the player's image. */
+.player-image {
+ width: 250px; /* The width of the image. */
+ height: 250px; /* The height of the image. */
+ max-width: 100%;
+ max-height: 100%;
+ /* The image will cover the entire area of its container without distorting its aspect ratio. */
+ /* The image is displayed using CSS Grid. */
+/* The margin to the left of the image. */
+}
+
+/* Styling for the player's details (name, breed, status). */
+.doc-details {
+ flex-direction: column; /* The details are arranged in a column. */
+ align-items: center; /* The details are centered along the vertical axis. */
+ justify-content: center; /* The details are centered along the horizontal axis. */
+ color: #000; /* The color of the details text. */
+ font-size: 16px; /* The size of the details text. */
+ text-align: center; /* The details text is centered. */
 }
