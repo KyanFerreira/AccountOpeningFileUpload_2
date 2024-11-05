@@ -158,6 +158,49 @@ img {
   color: black;
 }
 
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: salmon;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #25d366;
+}
+
+.send-button {
+  padding: 10px 20px;
+  background-color: #25d366;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 /* Here is the stuff after adding more pretty  */
 
 .documentListWrapper{
@@ -245,6 +288,18 @@ img {
 
 .input-box input{
   width: 100%; 
+  height: 100%;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .2);
+  outline: none;
+  border-radius: 40px;
+  font-size: 16px;
+  color: whitesmoke;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box-file input{
+  width: 50%; 
   height: 100%;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, .2);

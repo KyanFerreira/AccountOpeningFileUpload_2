@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 
 const CommentList = ({ currentComments }) => {
   //this will be a list of comments
+  const [inputValue, setInputValue] = useState("");
 
   console.log(currentComments);
 
-  // let chatbox;
-  // currentComments.map((item) => (
-  //   if (item.Client_Message__c){
-  //     chatbox += <div key={item.Id} className="message my-message"></div>
-  //   }
-  // ))
+  async function handleSendMessage(item){
+    console.log(`You have clicked on: ${item.Name} and here is the address of the Account Opening: ${item.Account_Opening__r.Address__c}`);
+    await getClientComments(setCurrentComments, item.Id);
+    navigate('/docdetails');
+  }
 
   return (
     <>
@@ -21,7 +21,7 @@ const CommentList = ({ currentComments }) => {
               <div
                 key={item.Id}
                 className={`message ${
-                  item.Client_Message__c ? "their-message" : "my-message"
+                  item.Client_Message__c ? "my-message" : "their-message"
                 }`}
               >
                 <p>{`${
@@ -29,10 +29,20 @@ const CommentList = ({ currentComments }) => {
                     ? item.Client_Message__c
                     : item.Employee_Response_Message__c
                 }`}</p>
-                {/* { ${item.Client_message__c} ? <p>{item.Client_Message__c}</p> : <p>{item.Employee_Response_Message__c}</p> } */}
               </div>
             ))
           :<p className="empty-message">No comments!</p>}
+          <div className="chat-input-container">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Type a message..."
+          className="chat-input"
+        />
+        <button onClick={handleSendMessage} className="send-button">Send</button>
+      </div>
+          
       </div>
     </>
   );
