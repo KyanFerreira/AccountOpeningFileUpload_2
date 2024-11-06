@@ -4,7 +4,7 @@ import { loginUser } from "../api/api";
 import { FaUser, FaLock  } from "react-icons/fa";
 
 
-const Login = ({setDocumentList}) => {
+const Login = ({setDocumentList, setUsername, setPassword, setToken}) => {
   const navigate = useNavigate();
 
   return (
@@ -21,9 +21,9 @@ const Login = ({setDocumentList}) => {
           <input type="text" id="password" placeholder="Password" name="password"></input>
           <FaLock className="icon" />
         </div>
-          <button onClick={async (e) => {await loginUser(e, setDocumentList); navigate('/username')}}>Login</button>
+          <button onClick={async (e) => {await loginUser(e, setDocumentList, setUsername, setPassword, setToken); navigate('/username')}}>Login</button>
           <div className="register-link">
-            <p>Don't have an account? <a href="#">Register</a></p>
+            <p>Don't have an account? <a onClick={() => navigate(`/Register`)}>Register</a></p>
           </div>
         </form>
       </div>

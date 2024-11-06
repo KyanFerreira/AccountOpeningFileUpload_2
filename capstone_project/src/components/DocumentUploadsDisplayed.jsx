@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate} from "react-router-dom";
-import { getClientComments } from "../api/api";
+import { getClientComments, refreshClientDocuments } from "../api/api";
 
-const DocumentUploadsDisplayed = ({documentList, setCurrentComments}) => {
+const DocumentUploadsDisplayed = ({documentList, setCurrentComments, username, password, setDocumentList}) => {
   const navigate = useNavigate();
   //parsedDocumentList = JSON.parse(documentList)
 
@@ -11,13 +11,16 @@ const DocumentUploadsDisplayed = ({documentList, setCurrentComments}) => {
     console.log(key);
   }
 
+  useEffect(() => {
+    refreshClientDocuments(setDocumentList, username, password);
+  },[]);
   //const [items, setItems] = useState([documentList]);
 
     async function handleClick(item){
       console.log(`${item.Id}`);
       console.log(`You have clicked on: ${item.Name} and here is the address of the Account Opening: ${item.Account_Opening__r.Address__c}`);
       await getClientComments(setCurrentComments, item.Id);
-      navigate(`/docdetails/${item.Id}`);
+      navigate(`/docdetails/${item.Id}/${item.Status__c}`);
     }
 
     return (

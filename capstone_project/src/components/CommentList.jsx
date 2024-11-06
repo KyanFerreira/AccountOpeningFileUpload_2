@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { IoIosSend  } from "react-icons/io";
 import { IoPeopleSharp } from "react-icons/io5";
+import { getClientComments, postClientComments } from "../api/api";
 
 
-const CommentList = ({ currentComments }) => {
+const CommentList = ({ currentComments, clientId, setCurrentComments }) => {
   //this will be a list of comments
   const [inputValue, setInputValue] = useState("");
 
-  console.log(currentComments);
-
-  async function handleSendMessage(item){
-    console.log(`You have clicked on: ${item.Name} and here is the address of the Account Opening: ${item.Account_Opening__r.Address__c}`);
-    await getClientComments(setCurrentComments, item.Id);
-    navigate('/docdetails');
+  async function handleSendMessage(){
+    await postClientComments(inputValue, clientId,setCurrentComments);
   }
+
+  // useEffect(() => {
+  //   getClientComments(setCurrentComments, clientId);
+  // },[]);
 
   return (
     <>

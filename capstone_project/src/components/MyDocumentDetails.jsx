@@ -3,13 +3,17 @@ import CommentList from "./CommentList";
 import { handleFileChange } from "../api/api";
 import { useParams } from 'react-router-dom';
 
-const MyDocumentDetails = ({currentComments}) => {
+const MyDocumentDetails = ({currentComments, setCurrentComments}) => {
 
-  const [uploadAllowed, setUploadAllowed] = useState([])
+  const [uploadAllowed, setUploadAllowed] = useState(true);
 
-  let { clientId } = useParams();
-  
-  useEffect
+  let { clientId, status } = useParams();
+
+  useEffect(() => {
+    if(status === 'Processing' || status === 'Accepted'){
+      setUploadAllowed(false);
+    }
+  },[] );
 
     return (
       <>
@@ -28,7 +32,7 @@ const MyDocumentDetails = ({currentComments}) => {
         : 
         <p>Upload is processing</p>}
 
-        {<CommentList currentComments={currentComments}/>}
+        {<CommentList currentComments={currentComments} clientId ={clientId} setCurrentComments={setCurrentComments}/>}
       </div>
         
       </>
