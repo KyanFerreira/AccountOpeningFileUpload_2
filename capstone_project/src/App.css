@@ -179,27 +179,40 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: salmon;
+  background-color: transparent;
+  border: 2px solid rgba(255,255,255,.2);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
 
 .chat-input {
-  flex: 1;
   padding: 10px;
   font-size: 16px;
   border-radius: 20px;
   border: 1px solid #ccc;
-  background-color: #25d366;
+  background-color: transparent;
+  color: black;
 }
 
-.send-button {
-  padding: 10px 20px;
-  background-color: #25d366;
-  color: white;
+#send-button {
+  flex: 1;
+  background-color: #dcf8c6;
+  color: black;
   font-size: 16px;
   border: none;
-  border-radius: 20px;
   cursor: pointer;
+  border-radius: 50%;
+  padding: 10px 20px;
+  font-weight: 400;
 }
+
+.flex1{
+  flex: 1;
+}
+.flex9{
+  flex: 8;
+}
+
 
 /* Here is the stuff after adding more pretty  */
 
