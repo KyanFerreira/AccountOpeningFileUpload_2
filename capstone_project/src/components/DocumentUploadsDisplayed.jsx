@@ -18,7 +18,6 @@ const DocumentUploadsDisplayed = ({documentList, setCurrentComments, username, p
 
     async function handleClick(item){
       console.log(`${item.Id}`);
-      console.log(`You have clicked on: ${item.Name} and here is the address of the Account Opening: ${item.Account_Opening__r.Address__c}`);
       await getClientComments(setCurrentComments, item.Id);
       navigate(`/docdetails/${item.Id}/${item.Status__c}`);
     }
