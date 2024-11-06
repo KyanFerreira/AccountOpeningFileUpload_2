@@ -36,7 +36,7 @@ async function getSalesforceAccessToken() {
     }
   }
 
-async function registerUser(e, setDocumentList) {
+async function registerUser(e, setDocumentList, setUsername, setPassword, setToken) {
     e.preventDefault();
     let firstName = document.getElementById("firstname").value;
     let lastName = document.getElementById("lastname").value;
@@ -46,15 +46,6 @@ async function registerUser(e, setDocumentList) {
     let usernameValue = document.getElementById("username").value;
     let phoneNumberValue = document.getElementById("phoneNumber").value;
     let accountTypeValue = document.getElementById("accountType").value;
-
-    console.log(firstName);
-    console.log(lastName);
-    console.log(emailValue);
-    console.log(addressValue);
-    console.log(usernameValue);
-    console.log(passwordValue);
-    console.log(phoneNumberValue);
-    console.log(accountTypeValue);
 
     try {
       const accessToken = await getSalesforceAccessToken();
@@ -82,8 +73,9 @@ async function registerUser(e, setDocumentList) {
       const result = await response.json();
       const parsedResult = await JSON.parse(result);
       setDocumentList(parsedResult);
-      //console.log(result.token);
-      //setToken(result.token);
+      setUsername(usernameValue);
+      setPassword(passwordValue);
+      setToken(true);
     } catch (e) {
       console.log(e);
     }
@@ -137,7 +129,7 @@ async function getClientComments(setCurrentComments, Id) {
     }
   }
 
-  async function loginUser(e, setDocumentList) {
+  async function loginUser(e, setDocumentList, setUsername, setPassword, setToken) {
     e.preventDefault();
     let usernameValue = document.getElementById("username").value;
     let passwordValue = document.getElementById("password").value;
@@ -156,6 +148,38 @@ async function getClientComments(setCurrentComments, Id) {
           body: JSON.stringify({
             username: usernameValue /*"Coolguy64" usernameValue*/,
             password: passwordValue /*"testingA" passwordValue*/,
+          }),
+        }
+      );
+      
+      const result = await response.json();
+      console.log(result);
+      const parsedResult = await JSON.parse(result);
+      console.log(parsedResult);
+      setDocumentList(parsedResult);
+      setUsername(usernameValue);
+      setPassword(passwordValue);
+      setToken(true);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async function refreshClientDocuments(setDocumentList, username, password) {
+    try {
+      const accessToken = await getSalesforceAccessToken();
+      console.log("accessToken", accessToken);
+      const response = await fetch(
+        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Account_Opening/Login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            username: username /*"Coolguy64" usernameValue*/,
+            password: password /*"testingA" passwordValue*/,
           }),
         }
       );
@@ -219,7 +243,7 @@ async function getClientComments(setCurrentComments, Id) {
       //const {id} = await response.json();;
       await contentDocumentLink(event,contentVersionID, clientDocumentId);
       document.getElementById("fileToUpload").value = "";
-      setUploadAllowed(true);
+      setUploadAllowed(false);
     } catch (e) {
       console.log(e);
     }
@@ -252,6 +276,31 @@ async function getClientComments(setCurrentComments, Id) {
     }
   };
 
-export {getSalesforceAccessToken, registerUser, getClientComments, loginUser, handleFileChange}
+  async function postClientComments(clientMessage, clientDocumentId, setCurrentComments) {
+    try {
+      const accessToken = await getSalesforceAccessToken();
+      console.log("accessToken", accessToken);
+      const response = await fetch(
+        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Client_Documents",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            commentMessage: clientMessage,
+            clientDocumentId: clientDocumentId,
+          }),
+        }
+      );
+      const result = await response.json();
+      await getClientComments(setCurrentComments, clientDocumentId);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+export {getSalesforceAccessToken, registerUser, getClientComments, loginUser, handleFileChange, refreshClientDocuments, postClientComments}
 
 //export default getSalesforceAccessToken;

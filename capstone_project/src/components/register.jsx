@@ -11,8 +11,7 @@ import axios from "axios";
 //hardcoded stuff
 
 
-const Register = ({ setDocumentList }) => {
-  const [selectedFile, setSelectedFile] = useState(null);
+const Register = ({setDocumentList, setUsername, setPassword, setToken}) => {
   const navigate = useNavigate();
 
 
@@ -62,32 +61,7 @@ const Register = ({ setDocumentList }) => {
     }
   }
 
-  async function postClientComments(e) {
-    try {
-      const accessToken = await getSalesforceAccessToken();
-      console.log("accessToken", accessToken);
-      const response = await fetch(
-        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Client_Documents",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            commentMessage: "random Text for Paragraghs",
-            clientDocumentId: "a01aj00000cVL3u",
-          }),
-        }
-      );
-      const result = await response.json();
-      console.log(result);
-      console.log(result.token);
-      //setToken(result.token);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  
 
   async function getBankAccountInfo(e) {
     try {
@@ -236,10 +210,10 @@ const Register = ({ setDocumentList }) => {
             <option value="Business Bank Account">Business Bank Account</option>
             <option value="Ameraudi Account">Ameraudi Account</option>
           </select>
-          <button onClick={async (e) => {await registerUser(e, setDocumentList); navigate('/username')}}>Register</button>
+          <button onClick={async (e) => {await registerUser(e, setDocumentList, setUsername, setPassword, setToken); navigate('/username')}}>Register</button>
         </form>
         <div className="register-link">
-            <p>Have an Account Already? <a href="#">Login</a></p>
+            <p>Have an Account Already? <a onClick={() => navigate(`/`)}>Login</a></p>
           </div>
 
       </div>
