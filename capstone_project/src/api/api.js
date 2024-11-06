@@ -185,7 +185,7 @@ async function getClientComments(setCurrentComments, Id) {
     });
   };
 
-  const handleFileChange = async (event, clientDocumentId) => {
+  const handleFileChange = async (event, clientDocumentId, setUploadAllowed) => {
     let base64 = await convertBase64(event.target.files[0]);
     base64 = base64.split(',')[1];
     // setSelectedFile(base64);
@@ -218,6 +218,8 @@ async function getClientComments(setCurrentComments, Id) {
       const contentVersionID = res.id;
       //const {id} = await response.json();;
       await contentDocumentLink(event,contentVersionID, clientDocumentId);
+      document.getElementById("fileToUpload").value = "";
+      setUploadAllowed(true);
     } catch (e) {
       console.log(e);
     }
