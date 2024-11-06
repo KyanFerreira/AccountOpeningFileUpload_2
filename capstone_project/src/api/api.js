@@ -301,6 +301,30 @@ async function getClientComments(setCurrentComments, Id) {
     }
   }
 
-export {getSalesforceAccessToken, registerUser, getClientComments, loginUser, handleFileChange, refreshClientDocuments, postClientComments}
+  async function getBankAccountInfo(setBankAccountInfo) {
+    try {
+      const accessToken = await getSalesforceAccessToken();
+      console.log("accessToken", accessToken);
+      const response = await fetch(
+        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Bank_Information",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      const result = await response.json();
+      console.log(result);
+      const parsedResult = await JSON.parse(result);
+      console.log(parsedResult);
+      setBankAccountInfo(parsedResult);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+export {getSalesforceAccessToken, registerUser, getClientComments, loginUser, handleFileChange, refreshClientDocuments, postClientComments, getBankAccountInfo}
 
 //export default getSalesforceAccessToken;
