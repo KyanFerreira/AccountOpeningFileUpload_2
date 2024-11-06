@@ -14,9 +14,10 @@ const DocumentUploadsDisplayed = ({documentList, setCurrentComments}) => {
   //const [items, setItems] = useState([documentList]);
 
     async function handleClick(item){
+      console.log(`${item.Id}`);
       console.log(`You have clicked on: ${item.Name} and here is the address of the Account Opening: ${item.Account_Opening__r.Address__c}`);
       await getClientComments(setCurrentComments, item.Id);
-      navigate('/docdetails');
+      navigate(`/docdetails/${item.Id}`);
     }
 
     return (

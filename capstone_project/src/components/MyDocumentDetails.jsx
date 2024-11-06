@@ -1,32 +1,33 @@
 import { useEffect, useState } from "react";
 import CommentList from "./CommentList";
 import { handleFileChange } from "../api/api";
+import { useParams } from 'react-router-dom';
 
 const MyDocumentDetails = ({currentComments}) => {
 
-  //this will be a list of comments
-  console.log(currentComments);
-  let comment = '';
+  const [uploadAllowed, setUploadAllowed] = useState([])
 
-  // const onChangeHandler = (event) => {
-  //   handleFileChange(event, currentComments[0].Client_Document__c);
-  // }
+  let { clientId } = useParams();
+  
+  useEffect
 
     return (
       <>
       <div className='documentListWrapper'>
         <h1> Here Are Your Documents Details! </h1>
-        
-        <div className="input-box-file">
-        <label htmlFor="avatar">Upload a file here: </label>
-          <input
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/png, image/jpeg, application/pdf"
-            onChange={(event) => handleFileChange(event, currentComments[0].Client_Document__c)}
-          />
-        </div>
+        {uploadAllowed ? 
+                <div className="input-box-file">
+                <label htmlFor="fileToUpload">Upload a file here: </label>
+                  <input
+                    type="file"
+                    id="fileToUpload"
+                    name="fileToUpload"
+                    accept="image/png, image/jpeg, application/pdf"
+                    onChange={(event) => handleFileChange(event, clientId, setUploadAllowed)}/>
+                </div>
+        : 
+        <p>Upload is processing</p>}
+
         {<CommentList currentComments={currentComments}/>}
       </div>
         
