@@ -38,136 +38,30 @@ const Register = ({setDocumentList, setUsername, setPassword, setToken}) => {
   //   }
   // }
 
-  async function getClientComments(e) {
-    try {
-      const accessToken = await getSalesforceAccessToken();
-      console.log("accessToken", accessToken);
-      const response = await fetch(
-        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Client_Documents/a01aj00000cVL3t",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      const result = await response.json();
-      console.log(result);
-      console.log(result.token);
-      //setToken(result.token);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   
 
-  async function getBankAccountInfo(e) {
-    try {
-      const accessToken = await getSalesforceAccessToken();
-      console.log("accessToken", accessToken);
-      const response = await fetch(
-        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Bank_Information",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      const result = await response.json();
-      console.log(result);
-      console.log(result.token);
-      //setToken(result.token);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
-  const handleFileChange = async (event) => {
-    let base64 = await convertBase64(event.target.files[0]);
-    base64 = base64.split(',')[1];
-    setSelectedFile(base64);
-    console.log(event.target.files[0]);
-    let name = event.target.files[0].name;
-    //console.log(base64);
-
-
-    try {
-      const accessToken = await getSalesforceAccessToken();
-      console.log("accessToken", accessToken);
-      const response = await fetch(
-        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/data/v62.0/sobjects/ContentVersion/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            Title: name,
-            PathOnClient: name,
-            ContentLocation: "S",
-            VersionData: base64,
-          }),
-        }
-      );
-      const result = await response.json();
-      console.log(result);
-      console.log(result.token);
-      //setToken(result.token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const contentDocumentLink = async (event) => {
-   
-    try {
-      const accessToken = await getSalesforceAccessToken();
-      console.log("accessToken", accessToken);
-      const response = await fetch(
-        "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Client_Doc_File_Upload",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({
-            contentDocID: "069aj000007xyAb",
-            clientDocumentId: "a01aj00000ddXEh",
-          }),
-        }
-      );
-      const result = await response.json();
-      console.log(result);
-      console.log(result.token);
-      //setToken(result.token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-
-
+  // async function getBankAccountInfo(e) {
+  //   try {
+  //     const accessToken = await getSalesforceAccessToken();
+  //     console.log("accessToken", accessToken);
+  //     const response = await fetch(
+  //       "https://interaudibank-dev-ed.develop.my.salesforce.com/services/apexrest/api/Bank_Information",
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${accessToken}`,
+  //         },
+  //       }
+  //     );
+  //     const result = await response.json();
+  //     console.log(result);
+  //     console.log(result.token);
+  //     //setToken(result.token);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
   //What will be returned to the App page
   return (
