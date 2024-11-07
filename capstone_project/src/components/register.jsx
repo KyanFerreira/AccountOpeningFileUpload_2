@@ -111,32 +111,6 @@ const Register = ({setDocumentList, setUsername, setPassword, setToken}) => {
           </div>
 
       </div>
-      
-
-      <button onClick={(e) => getClientDocs(e)}>Check Json For Get</button>
-      <button onClick={(e) => loginUser(usernameInput, passwordInput)}>Login User Test</button>
-      <button onClick={(e) => getClientComments(e)}>
-        Client Comments Test
-      </button>
-      <button onClick={(e) => postClientComments(e)}>
-        Client Comments Insert Test
-      </button>
-      <button onClick={(e) => getBankAccountInfo(e)}>
-        Bank Account info Test
-      </button>
-
-      <button onClick={(e) => contentDocumentLink()}>
-        Connect To ClientDocument
-      </button>
-
-      <label htmlFor="avatar">Choose a profile picture:</label>
-      <input
-        type="file"
-        id="avatar"
-        name="avatar"
-        accept="image/png, image/jpeg, application/pdf"
-        onChange={handleFileChange}
-      />
     </>
   );
 };

@@ -123,6 +123,11 @@ async function getClientComments(setCurrentComments, Id) {
       const result = await response.json();
       console.log(result);
       const parsedResult = await JSON.parse(result);
+      console.log(parsedResult);
+      let descendingOrderResult = parsedResult.sort((a,b) => {
+        return new Date(a.Response_Date_Time__c) - new Date(b.Response_Date_Time__c);
+      });
+      console.log(descendingOrderResult);
       setCurrentComments(parsedResult);
     } catch (e) {
       console.log(e);

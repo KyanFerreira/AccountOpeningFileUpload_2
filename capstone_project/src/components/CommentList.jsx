@@ -10,6 +10,7 @@ const CommentList = ({ currentComments, clientId, setCurrentComments }) => {
 
   async function handleSendMessage(){
     await postClientComments(inputValue, clientId,setCurrentComments);
+    setInputValue("");
   }
 
   // useEffect(() => {
