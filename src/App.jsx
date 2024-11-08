@@ -2,11 +2,11 @@ import { useState } from 'react'
 import Login from './components/Login';
 import BankAccountInfo from './components/BankAccountInfo';
 import Register from './components/Register';
-import MyDocumentDetails from './components/myDocumentDetails';
+import MyDocumentDetails from './components/MyDocumentDetails';
 import './App.css'
 import { Routes, Route, Link, useParams, useNavigate } from "react-router-dom";
 import DocumentUploadsDisplayed from './components/DocumentUploadsDisplayed';
-// import axios from 'axios';
+// import axios from 'axios';s
 // import dotenv from 'dotenv';
 // dotenv.config();
 
