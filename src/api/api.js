@@ -7,15 +7,7 @@ import { useParams, useNavigate} from "react-router-dom";
 async function getSalesforceAccessToken() {
     const tokenUrl = `https://interaudibank-dev-ed.develop.my.salesforce.com/services/oauth2/token`;
     try {
-      console.log("process.env", process.env);
-      console.log(
-        "process.env.VITE_SALESFORCE_PASSWORD",
-        process.env.VITE_SALESFORCE_PASSWORD
-      );
-      console.log(
-        "process.env.VITE_SALESFORCE_SECURITY_TOKEN",
-        process.env.VITE_SALESFORCE_SECURITY_TOKEN
-      );
+      console.log("process.env", import.meta.env);
       const response = await axios.post(tokenUrl, null, {
         params: {
           grant_type: "password", // This example uses Username-Password OAuth flow
