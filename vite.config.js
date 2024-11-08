@@ -15,5 +15,6 @@ export default defineConfig(({ mode }) => {
       'process.env.REACT_APP_SALESFORCE_INSTANCE_URL':JSON.stringify(env.REACT_APP_SALESFORCE_INSTANCE_URL)
     },
     plugins: [react()],
+    base: 'https://kyanferreira.github.io/AccountOpeningFileUpload_2'
   }
 })
