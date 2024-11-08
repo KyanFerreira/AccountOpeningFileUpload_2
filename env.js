@@ -54,11 +54,11 @@ window.env = {
   "WSLENV": "",
   "EDITOR": "code -w",
   "INIT_CWD": "/mnt/c/Users/kyanf/OneDrive/Documents/Coursework/Capstone Project/AccountOpeningFileUpload/capstone_project",
-  "REACT_APP_CLIENT_ID": "3MVG9XgkMlifdwVCsrdJm8wmHR6azcmfdYD3OmA8hfQQH.ShXd.jADs38DqmkHSwWIXijIqUWvExmdsDogzxH",
-  "REACT_APP_CLIENT_SECRET": "5DBBB8BCB1FB653E509AE280632526ED0947F74EC9509CD2C88D5793B3F61159",
-  "REACT_APP_SALESFORCE_USERNAME": "api_only@sandbox.com",
-  "REACT_APP_SALESFORCE_PASSWORD": "Test123*!&*&",
-  "REACT_APP_SALESFORCE_SECURITY_TOKEN": "tec6dPkIM3XrMrX70DxbGieFn",
-  "REACT_APP_SALESFORCE_LOGIN_URL": "https://interaudibank-dev-ed.develop.my.salesforce.com",
-  "REACT_APP_SALESFORCE_INSTANCE_URL": "https://interaudibank-dev-ed.develop.my.salesforce.com"
+  "VITE_APP_CLIENT_ID": "3MVG9XgkMlifdwVCsrdJm8wmHR6azcmfdYD3OmA8hfQQH.ShXd.jADs38DqmkHSwWIXijIqUWvExmdsDogzxH",
+  "VITE_APP_CLIENT_SECRET": "5DBBB8BCB1FB653E509AE280632526ED0947F74EC9509CD2C88D5793B3F61159",
+  "VITE_SALESFORCE_USERNAME": "api_only@sandbox.com",
+  "VITE_SALESFORCE_PASSWORD": "Test123*!&*&",
+  "VITE_SALESFORCE_SECURITY_TOKEN": "tec6dPkIM3XrMrX70DxbGieFn",
+  "VITE_SALESFORCE_LOGIN_URL": "https://interaudibank-dev-ed.develop.my.salesforce.com",
+  "VITE_SALESFORCE_INSTANCE_URL": "https://interaudibank-dev-ed.develop.my.salesforce.com"
 };
