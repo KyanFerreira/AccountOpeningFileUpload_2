@@ -9,22 +9,22 @@ async function getSalesforceAccessToken() {
     try {
       console.log("process.env", process.env);
       console.log(
-        "process.env.REACT_APP_SALESFORCE_PASSWORD",
-        process.env.REACT_APP_SALESFORCE_PASSWORD
+        "process.env.VITE_SALESFORCE_PASSWORD",
+        process.env.VITE_SALESFORCE_PASSWORD
       );
       console.log(
-        "process.env.REACT_APP_SALESFORCE_SECURITY_TOKEN",
-        process.env.REACT_APP_SALESFORCE_SECURITY_TOKEN
+        "process.env.VITE_SALESFORCE_SECURITY_TOKEN",
+        process.env.VITE_SALESFORCE_SECURITY_TOKEN
       );
       const response = await axios.post(tokenUrl, null, {
         params: {
           grant_type: "password", // This example uses Username-Password OAuth flow
-          client_id: process.env.REACT_APP_CLIENT_ID,
-          client_secret: process.env.REACT_APP_CLIENT_SECRET,
-          username: process.env.REACT_APP_SALESFORCE_USERNAME,
+          client_id: process.env.VITE_CLIENT_ID,
+          client_secret: process.env.VITE_CLIENT_SECRET,
+          username: process.env.VITE_SALESFORCE_USERNAME,
           password:
-            process.env.REACT_APP_SALESFORCE_PASSWORD +
-            process.env.REACT_APP_SALESFORCE_SECURITY_TOKEN,
+            process.env.VITE_SALESFORCE_PASSWORD +
+            process.env.VITE_SALESFORCE_SECURITY_TOKEN,
         },
       });
   
